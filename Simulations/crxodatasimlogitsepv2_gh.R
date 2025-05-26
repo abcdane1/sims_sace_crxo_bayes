@@ -2,7 +2,7 @@
 
 #I = number of clusters
 #J = number of periods
-#csl,csu = cluster-period bounds, lower csl, upper csu
+#csl,csu = cluster-period size bounds, lower csl, upper csu
 #mux = covariate means 
 #params z: zp (int,x,j)
 #params w: wp (int,x,j)
@@ -12,11 +12,11 @@
 #params y g=10, trt = 1 : y101 (int,x,j)
 	#error var sigma2y10
 #sd random effects params
-	#z clust,clustp-sdscz,sdscpz, w clust,clusp sdscw,sdscpw
+	#z clust,clustp-sdscz,sdscpz, w clust,clusp-sdscw,sdscpw
 	#y g=11,clust,clustp-sdyc11,sdycp11,y g=10,clust,clustp-sdyc10,sdycp10
 #sec - include period
 #trtp - treatment sequence probability of assign
-#logscale - T=outcome is logged
+#logscale - T= outcome y is logged
 
 crxodfsimlogit_v2<-function(I,J,csl,csu,mux,zp,wp,
                          y111,y110,y101,sigma2y11,sigma2y10,

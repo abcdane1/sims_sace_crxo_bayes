@@ -7,7 +7,7 @@
 #clustp = cluster period 
 #cpsize = cluster period size
 #sec = include period fe
-#het = include heterogenous treatment effect among always-survivors
+#het = include heterogeneous treatment effect among always-survivors
 #total_iterations = total MCMC iterations
 #burn_in_iterations = total burn-in iterations
 #thin = MCMC thinning parameter, if thin=1, no thinning
