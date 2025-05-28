@@ -28,7 +28,7 @@ boot_its<-1000
 cl_boot_real<-function(boot){
   idval<-length(unique(df_peptic_surv$clus))
   clustidv<-sample(1:idval,idval,replace=T)
-  dflist<-vector("list",length(idval))
+  dflist<-vector("list",idval)
   for(j in 1:idval){
     dflist[[j]]<-df_peptic_surv[df_peptic_surv$clus==clustidv[j],] #resampling by cluster
   }
