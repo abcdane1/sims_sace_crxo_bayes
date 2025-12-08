@@ -202,8 +202,8 @@ crxodfsimlogit_v2<-function(I,J,csl,csu,mux,zp,wp,
         } #outcome variance, set to I
       
       if(logscale==T){
-        Sigmay11<-inv_lognormal(sigma2y11,0)*diag(cij) #outcome variance under lognormal, variance 3days 
-        Sigmay10<-inv_lognormal(sigma2y10,0)*diag(cij) #outcome variance under lognormal, variance 3days 
+        Sigmay11<-inv_lognormal(sigma2y11,0)*diag(cij) #outcome variance under lognormal 
+        Sigmay10<-inv_lognormal(sigma2y10,0)*diag(cij) #outcome variance under lognormal 
       }
       
       Txiii11<-Txii11[i]
