@@ -4,8 +4,8 @@
 #J = number of periods
 #csl,csu = cluster-period size bounds, lower csl, upper csu
 #mux = covariate means 
-#params z: zp (int,x,j)
-#params w: wp (int,x,j)
+#params ps z: zp (int,x,j)
+#params ps w: wp (int,x,j)
 #params y g=11, trt = 1: y111 (trt,int,x,j), 
 #params y g=11, trt = 0 : y110 (int,x,j)
 	#error var sigma2y11
@@ -98,23 +98,23 @@ crxodfsimlogit_v2<-function(I,J,csl,csu,mux,zp,wp,
 
   #induce within cluster correlation, survival
   Tetai11<-rnorm(I,mean=0,sd=sdscz) #cluster level
-  #Teta11<-c(rep(Tetai11,cs1),rep(Tetai11,cs2))
+
   #cluster period
   Tnuij11<-matrix(c(rnorm(I,0,sd=sdscpz),rnorm(I,0,sd=sdscpz)),ncol=2)
   
   #induce within cluster correlation, survival
   Tetai10<-rnorm(I,mean=0,sd=sdscw) #cluster level
-  #Teta10<-c(rep(Tetai10,cs1),rep(Tetai10,cs2))
+
   #cluster period
   Tnuij10<-matrix(c(rnorm(I,0,sd=sdscpw),rnorm(I,0,sd=sdscpw)),ncol=2) #for now the same 
   
   #induce within cluster correlation, non-mortal
   Txii11<-rnorm(I,mean=0,sd=sdyc11)
   Txii10<-rnorm(I,mean=0,sd=sdyc10)
-  #Txi<-c(rep(Txii,cs1),rep(Txii,cs2))
+
   Tgammaij11<-matrix(c(rnorm(I,0,sd=sdycp11),rnorm(I,0,sd=sdycp11)),ncol=2)
   Tgammaij10<-matrix(c(rnorm(I,0,sd=sdycp10),rnorm(I,0,sd=sdycp10)),ncol=2)
-  #Tgamma<-rep(Tgammaij,c(cs1,cs2))
+
   
   #data generation
   c<-1
@@ -132,7 +132,7 @@ crxodfsimlogit_v2<-function(I,J,csl,csu,mux,zp,wp,
       mean2<-rep(mux[2],cij)
       mean3<-rep(mux[3],cij) 
       
-      #variance matrix of cov vector, independent, all same for now, set to I
+      #variance matrix of cov vector, independent, set to I
       
       #covariates 1-3 generation
       if(logscale==F){
