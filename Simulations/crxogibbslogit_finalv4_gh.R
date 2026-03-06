@@ -6,21 +6,22 @@
 #clustid = cluster id 
 #clustp = cluster period 
 #cpsize = cluster period size
-#sec = include period fe
+#sec = include period fixed effect
 #het = include heterogeneous treatment effect among always-survivors
 #total_iterations = total MCMC iterations
 #burn_in_iterations = total burn-in iterations
 #thin = MCMC thinning parameter, if thin=1, no thinning
 #chains = MCMC chains
 #post_summ = include complete posterior summary of all parameters
-#sace_only = include only SACE summary of sace parameters
+#sace_only = include only SACE summary of SACE parameters
 	#if sace_only and post_summ are false include all raw posterior draws of parameters
 #credbound=credible interval bounds
 #logscale = outcome on log scale
-#rr= return rr if outcome on log scale
-#cs,cps:cs-model cluster random effects in ps model, cps-model has cluster and cluster-period random effects in ps model
-#cy,cpy:cy-model cluster random effects in outcome model, cpy-model has cluster and cluster-period random effects in outcome model
-#initv = an index for initialization of initials 
+#rr = return rr if outcome on log scale
+#cs,cps:cs-model cluster random intercepts in ps model, cps-model has cluster and cluster-period random intercepts in ps model
+#cy,cpy:cy-model cluster random intercepts in outcome model, cpy-model has cluster and cluster-period random intercepts in outcome model
+#initv = an index for initialization of possible initials for variance/sd parameters, allows for checking of multiple initials
+#if only one specified for each, then set initv=1 as is default 
 
 
 sace_truecrxologitv3_noop_full<-function(data,trt="a",surv="s",out="y",ind="x",clustid="id",clustp="j",cpsize="nij",sec=F,
