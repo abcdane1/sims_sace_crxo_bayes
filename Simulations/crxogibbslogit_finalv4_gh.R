@@ -376,7 +376,7 @@ sace_truecrxologitv3_noop_full<-function(data,trt="a",surv="s",out="y",ind="x",c
       #cp<-clustid+I*(clustp-1)
       P[cbind(r,clustid)]<-1
       
-      #cluster period index for all individuals
+      #cluster period index for all individuals (renamed Q in Isenberg et al.)
       L<-matrix(rep(0,n*IM),ncol=IM)
       L[cbind(r,clustpind)]<-1
       
