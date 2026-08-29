@@ -7,7 +7,7 @@ df_peptic_surv$period<-df_peptic_surv$period-1
 #lmm model fit on observed
 fit_surv<-lme4::lmer(log(HOS_LOS)~trtA*AGE+trtA*GENDER+trtA*AP2_ADMIT+period+(1|clus)+(1|period:clus),data=df_peptic_surv)
 
-coeffs_surv<-fixef(fit_surv)
+coeffs_surv<-lme4::fixef(fit_surv)
 
 covs_surv<-cbind(int=1,df_peptic_surv[,c("trtA","AGE","GENDER","AP2_ADMIT","period")])
 
@@ -30,13 +30,15 @@ cl_boot_real<-function(boot){
   clustidv<-sample(1:idval,idval,replace=T)
   dflist<-vector("list",idval)
   for(j in 1:idval){
-    dflist[[j]]<-df_peptic_surv[df_peptic_surv$clus==clustidv[j],] #resampling by cluster
+    dflistj<-df_peptic_surv[df_peptic_surv$clus==clustidv[j],]
+    dflistj$clus<-j
+    dflist[[j]]<-dflistj #resampling by cluster
   }
   dfb<-do.call(rbind,dflist)
   
   fit_survb<-lme4::lmer(log(HOS_LOS)~trtA*AGE+trtA*GENDER+trtA*AP2_ADMIT+period+(1|clus)+(1|period:clus),data=dfb)
   
-  coeffs_survb<-fixef(fit_survb)
+  coeffs_survb<-lme4::fixef(fit_survb)
   
   covs_survb<-cbind(int=1,dfb[,c("trtA","AGE","GENDER","AP2_ADMIT","period")])
   
